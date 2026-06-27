@@ -1,11 +1,11 @@
 # 🖥️ 华为 MateStation B520 · OpenCore Hackintosh
 
-**Intel Core i7-10700 · AMD Radeon RX 6750 GRE · Comet Lake-S · B560 · macOS Sequoia 15 · OpenCore 1.0.x**
+**Intel Core i7-10700 · UHD Graphics 630 · Comet Lake-S · B560 · macOS Sequoia 15 · OpenCore 1.0.x**
 
 <div align="center">
 
 ![CPU](https://img.shields.io/badge/CPU-i7_10700_Comet_Lake-0071C5?style=flat-square)
-![GPU](https://img.shields.io/badge/GPU-RX_6750_GRE_Navi_22-ED1C24?style=flat-square)
+![GPU](https://img.shields.io/badge/GPU-UHD_630-0071C5?style=flat-square)
 ![RAM](https://img.shields.io/badge/RAM-16_GB_DDR4-8B5CF6?style=flat-square)
 ![OpenCore](https://img.shields.io/badge/OpenCore-1.0.x-9cf?style=flat-square)
 ![Chipset](https://img.shields.io/badge/Chipset-B560-00A3E0?style=flat-square)
@@ -25,7 +25,7 @@
 | **型号** | 华为 MateStation B520 | PUBZ-WXXXX-PCB | ✅ |
 | **主板** | HUAWEI PUBZ-WXXXX-PCB | B560 (Comet Lake-S) | ✅ |
 | **CPU** | Intel Core i7-10700 | 8C/16T @ 2.90-4.80 GHz | ✅ 睿频正常 |
-| **独显** | AMD Radeon RX 6750 GRE | 12 GB (Navi 22, 1002-73DF) | ✅ 原生支持 |
+| **核显** | Intel UHD Graphics 630 | Comet Lake (8086-9BC5) | ✅ 硬件加速 |
 | **内存** | DDR4 SO-DIMM | 16 GB | ✅ |
 | **系统盘** | YMTC PC005 | 512 GB NVMe SSD | ✅ |
 | **数据盘** | WD WD20EARZ | 2 TB HDD | ✅ |
@@ -40,12 +40,12 @@
 
 | 功能 | 状态 | 功能 | 状态 |
 |:-----|:---:|:-----|:---:|
-| **RX 6750 GRE 独显** | ✅ 原生驱动 | **Metal 3** | ✅ |
+| **UHD 630 核显** | ✅ 硬件加速 | **Metal** | ✅ |
 | **Realtek RTL8168 有线网卡** | ✅ | **USB 2.0/3.0/3.2** | ✅ |
 | **NVMe SSD** | ✅ | **SATA HDD** | ✅ |
 | **CPU 睿频** | ✅ | **XCPM 电源管理** | ✅ |
 | **HDMI 1920×1080** | ✅ | **睡眠/唤醒** | ✅ |
-| **NVRAM** | ✅ | **Resizable BAR** | ✅ |
+| **NVRAM** | ✅ | **DVMT/核显** | ✅ |
 | **Wi-Fi (Intel AX201)** | ⚠️ | **蓝牙 (Intel)** | ⚠️ |
 | **声卡 (Senary Audio)** | ⚠️ | | |
 
@@ -141,7 +141,8 @@ cp -R EFI /Volumes/EFI/
 ## 🔧 注意事项
 
 - **华为 MateStation B520** 是华为品牌台式机，B560 芯片组 + Comet Lake-S CPU
-- **AMD RX 6750 GRE** (Navi 22) 在 macOS Sequoia 中**原生支持**，无需 WhateverGreen 的 GPU 补丁，即插即用，完整支持 Metal 3
+- **Intel UHD Graphics 630** 核显通过 WhateverGreen 驱动，完整支持硬件加速
+- 注意核显显存预分配 DVMT 需在 BIOS 中设置为 64MB 或以上
 - Senary Audio (14F1-5098) 是国产音频芯片，AppleALC 可能需要尝试多个 layout-id
 - Intel AX201 Wi-Fi 使用 **AirportItlwm**（需对应 Sequoia 版本的构建）
 - 板载 YMTC PC005 NVMe 固态硬盘兼容性良好
